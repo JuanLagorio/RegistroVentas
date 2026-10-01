@@ -36,7 +36,7 @@ evita que alguien entre por accidente al link.
 
 1. En GitHub, andá a **Settings > Pages** y elegí como *Source* la opción **GitHub Actions**.
 2. Hacé `git push` a `main`. El workflow [.github/workflows/deploy.yml](.github/workflows/deploy.yml) compila y publica solo.
-3. Tu link va a quedar en `https://juanchoa07-design.github.io/RegistroVentas/`. Compartilo con los repartidores (pueden agregarlo a la pantalla de inicio del celular como si fuera una app).
+3. Tu link va a quedar en `https://juanlagorio.github.io/RegistroVentas/`. Compartilo con los repartidores (pueden agregarlo a la pantalla de inicio del celular como si fuera una app).
 
 ## Desarrollo local
 
@@ -59,7 +59,7 @@ npm run dev
 
 ## Panel de administración
 
-En `https://juanchoa07-design.github.io/RegistroVentas/?admin=1` hay un panel
+En `https://juanlagorio.github.io/RegistroVentas/?admin=1` hay un panel
 que muestra, en vivo, todas las jornadas ya finalizadas de cualquier reparto
 (fecha, nombre y total). Pide el PIN configurado en `ADMIN_PIN` la primera
 vez y después lo recuerda en ese navegador. Desde ahí se puede:
