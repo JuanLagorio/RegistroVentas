@@ -55,6 +55,7 @@ export const CATEGORIAS_PRODUCTOS = [
       { nombre: 'Paños de Piso (6 unid.)', precio: 500 },
       { nombre: 'Paños de Piso (25 unid.)', precio: 1500 },
       { nombre: 'Franelas (6 unid.)', precio: 280 },
+      { nombre: 'Microfibras', precio: 280 },
       { nombre: 'Guantes Negros (10 pares)', precio: null },
       { nombre: 'Guantes Amarillos (10 pares)', precio: null },
     ],
