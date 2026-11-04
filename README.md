@@ -74,10 +74,10 @@ reparto, vendedor y total). Pide el PIN configurado en `ADMIN_PIN` la
 primera vez y después lo recuerda en ese navegador. Desde ahí se puede:
 
 - **Descargar el resumen del mes (PDF)**, listo para imprimir: ventas por
-  vendedor con su comisión (`COMISION_PORCENTAJE`), productos vendidos con
-  cantidad y total en plata, y todas las jornadas del mes. Las jornadas
-  creadas antes de que existiera el campo vendedor aparecen como "Sin
-  vendedor".
+  vendedor con su comisión (`COMISION_PORCENTAJE`) y productos vendidos con
+  cantidad y total en plata (no lista las jornadas una por una). Las
+  jornadas creadas antes de que existiera el campo vendedor aparecen como
+  "Sin vendedor".
 - **Descargar el PDF** de cualquier jornada (se genera al momento a partir de
   los datos guardados, no hay que compartirlo desde el celular del reparto).
 - **Eliminar una jornada** de la lista (pide confirmación). No se borran sus

@@ -193,8 +193,8 @@ export default function Admin() {
                     ` · incluye ${cantidadEliminadas} eliminada${cantidadEliminadas === 1 ? '' : 's'} de la lista`}
                 </p>
                 <p className="subtexto">
-                  PDF para imprimir con las ventas por vendedor y su comisión ({PORCENTAJE_TEXTO}%), los productos
-                  vendidos con su cantidad y total, y todas las jornadas del mes.
+                  PDF para imprimir con las ventas por vendedor y su comisión ({PORCENTAJE_TEXTO}%) y los productos
+                  vendidos con su cantidad y total.
                 </p>
                 {errorMes && <p className="subtexto texto-error">{errorMes}</p>}
               </div>

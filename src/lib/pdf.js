@@ -2,8 +2,7 @@ import { jsPDF } from 'jspdf'
 import autoTable from 'jspdf-autotable'
 import { COMISION_PORCENTAJE, NOMBRE_APP } from '../config/config'
 import { formatearMoneda } from './format'
-import { fechaCorta, nombreMes } from './meses'
-import { SIN_VENDEDOR } from './resumenMensual'
+import { nombreMes } from './meses'
 
 export function generarPDF(jornada, ventas) {
   const doc = new jsPDF()
@@ -71,8 +70,8 @@ const ESTILO_PIE = { fillColor: [226, 232, 240], textColor: [15, 23, 42], fontSt
 const der = (content) => ({ content, styles: { halign: 'right' } })
 const plata = (valor) => `$${formatearMoneda(valor ?? 0)}`
 
-// Resumen del mes para imprimir: ventas por vendedor con comisión, productos
-// vendidos (cantidad y plata) y todas las jornadas finalizadas del mes.
+// Resumen del mes para imprimir: ventas por vendedor con comisión y productos
+// vendidos (cantidad y plata). No lista las jornadas una por una.
 export function generarPDFMensual(mes, jornadas, resumen) {
   const doc = new jsPDF()
   const altoPagina = doc.internal.pageSize.getHeight()
@@ -124,21 +123,6 @@ export function generarPDFMensual(mes, jornadas, resumen) {
     head: [['Producto', der('Cantidad'), der('Total')]],
     body: resumen.productos.map((p) => [p.producto, der(p.cantidad.toLocaleString('es-AR')), der(plata(p.monto))]),
     foot: [['Total', der(resumen.unidades.toLocaleString('es-AR')), der(plata(resumen.montoProductos))]],
-    theme: 'grid',
-    headStyles: { fillColor: COLOR_ENCABEZADO },
-    footStyles: ESTILO_PIE,
-  })
-
-  autoTable(doc, {
-    startY: titulo('Jornadas del mes', doc.lastAutoTable.finalY + 12),
-    head: [['Fecha', 'Reparto', 'Vendedor', der('Total')]],
-    body: jornadas.map((j) => [
-      fechaCorta(j.fecha),
-      j.nombreReparto || 'Reparto sin nombre',
-      j.vendedor || SIN_VENDEDOR,
-      der(plata(j.totalFinal)),
-    ]),
-    foot: [['', '', 'Total', der(plata(resumen.totalMes))]],
     theme: 'grid',
     headStyles: { fillColor: COLOR_ENCABEZADO },
     footStyles: ESTILO_PIE,
