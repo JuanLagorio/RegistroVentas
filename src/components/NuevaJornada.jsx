@@ -1,7 +1,20 @@
 import { useState } from 'react'
 import { REPARTOS, VENDEDORES } from '../config/config'
+import PantallaLogin from './PantallaLogin'
 
-function GrupoOpciones({ nombre, titulo, opciones, valor, onChange }) {
+function saludo() {
+  const hora = new Date().getHours()
+  if (hora < 12) return 'Buenos días'
+  if (hora < 20) return 'Buenas tardes'
+  return 'Buenas noches'
+}
+
+function fechaDeHoy() {
+  const texto = new Date().toLocaleDateString('es-AR', { weekday: 'long', day: 'numeric', month: 'long' })
+  return texto.charAt(0).toUpperCase() + texto.slice(1)
+}
+
+function GrupoOpciones({ nombre, titulo, opciones, valor, onChange, renderOpcion }) {
   return (
     <fieldset className="grupo-opciones">
       <legend>{titulo}</legend>
@@ -16,7 +29,7 @@ function GrupoOpciones({ nombre, titulo, opciones, valor, onChange }) {
               onChange={() => onChange(opcion)}
               required
             />
-            <span>{opcion}</span>
+            <span className="opcion-cara">{renderOpcion(opcion)}</span>
           </label>
         ))}
       </div>
@@ -41,22 +54,50 @@ export default function NuevaJornada({ onCrear }) {
   }
 
   return (
-    <div className="pantalla-centrada">
-      <form className="tarjeta" onSubmit={handleSubmit}>
-        <h1>Iniciar jornada</h1>
-        <p className="subtexto">Se va a guardar cada venta automáticamente, aunque cierres esta app.</p>
-        <GrupoOpciones nombre="reparto" titulo="Reparto" opciones={REPARTOS} valor={reparto} onChange={setReparto} />
+    <PantallaLogin>
+      <form className="tarjeta login-tarjeta" onSubmit={handleSubmit}>
+        <div className="login-saludo">
+          <p className="login-fecha">{fechaDeHoy()}</p>
+          <h1>{saludo()}</h1>
+          <p className="subtexto">Elegí el reparto y quién vende hoy para empezar la jornada.</p>
+        </div>
+
+        <GrupoOpciones
+          nombre="reparto"
+          titulo="Reparto"
+          opciones={REPARTOS}
+          valor={reparto}
+          onChange={setReparto}
+          renderOpcion={(r) => (
+            <>
+              <span className="opcion-num">{r.replace(/\D/g, '') || r}</span>
+              <span className="opcion-etiqueta">Reparto</span>
+            </>
+          )}
+        />
+
         <GrupoOpciones
           nombre="vendedor"
           titulo="Vendedor"
           opciones={VENDEDORES}
           valor={vendedor}
           onChange={setVendedor}
+          renderOpcion={(v) => (
+            <>
+              <span className="avatar" aria-hidden="true">
+                {v.charAt(0)}
+              </span>
+              <span className="opcion-nombre">{v}</span>
+            </>
+          )}
         />
-        <button type="submit" className="boton-primario" disabled={enviando || !reparto || !vendedor}>
+
+        <button type="submit" className="boton-login" disabled={enviando || !reparto || !vendedor}>
           {enviando ? 'Iniciando…' : 'Comenzar a vender'}
         </button>
+
+        <p className="login-nota">Cada venta se guarda sola en la nube, aunque cierres la app.</p>
       </form>
-    </div>
+    </PantallaLogin>
   )
 }
