@@ -5,6 +5,7 @@ import { authReady, db } from './firebase'
 import { ADMIN_PIN } from './config/config'
 import { descargarPDF, generarPDF, nombreArchivoPDF } from './lib/pdf'
 import { formatearMoneda } from './lib/format'
+import ResumenMensual from './components/ResumenMensual'
 
 const STORAGE_KEY = 'rv_admin_ok'
 
@@ -62,7 +63,7 @@ export default function Admin() {
 
   async function handleEliminar(jornada) {
     const confirmado = window.confirm(
-      `¿Eliminar para siempre la jornada de ${jornada.nombreReparto || 'reparto sin nombre'} del ${jornada.fecha} (Total $${formatearMoneda(jornada.totalFinal ?? 0)})? No se puede deshacer.`
+      `¿Eliminar para siempre la jornada de ${jornada.nombreReparto || 'reparto sin nombre'}${jornada.vendedor ? ` (${jornada.vendedor})` : ''} del ${jornada.fecha} (Total $${formatearMoneda(jornada.totalFinal ?? 0)})? No se puede deshacer.`
     )
     if (!confirmado) return
 
@@ -112,10 +113,15 @@ export default function Admin() {
         {jornadas !== null && jornadas.length === 0 && (
           <p className="subtexto centrado">Todavía no hay jornadas finalizadas.</p>
         )}
+        {jornadas !== null && <ResumenMensual jornadas={jornadas} />}
+        {jornadas?.length > 0 && <h2 className="titulo-seccion">Jornadas</h2>}
         {jornadas?.map((j) => (
           <div key={j.id} className="tarjeta">
             <h2>{j.nombreReparto || 'Reparto sin nombre'}</h2>
-            <p className="subtexto">{j.fecha}</p>
+            <p className="subtexto">
+              {j.fecha}
+              {j.vendedor ? ` · ${j.vendedor}` : ''}
+            </p>
             <p className="total-jornada-admin">${formatearMoneda(j.totalFinal ?? 0)}</p>
             <div className="fila-campos">
               <button

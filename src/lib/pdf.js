@@ -11,13 +11,19 @@ export function generarPDF(jornada, ventas) {
   doc.text(NOMBRE_APP, 14, 18)
 
   doc.setFontSize(11)
-  doc.text(`Fecha: ${jornada.fecha}`, 14, 27)
+  let y = 27
+  doc.text(`Fecha: ${jornada.fecha}`, 14, y)
   if (jornada.nombreReparto) {
-    doc.text(`Reparto: ${jornada.nombreReparto}`, 14, 33)
+    y += 6
+    doc.text(`Reparto: ${jornada.nombreReparto}`, 14, y)
+  }
+  if (jornada.vendedor) {
+    y += 6
+    doc.text(`Vendedor: ${jornada.vendedor}`, 14, y)
   }
 
   autoTable(doc, {
-    startY: jornada.nombreReparto ? 39 : 33,
+    startY: y + 6,
     head: [['Cliente', 'Productos', 'Total venta']],
     body: ventas.map((v) => [
       v.cliente,
@@ -59,7 +65,8 @@ export function generarPDF(jornada, ventas) {
 }
 
 export function nombreArchivoPDF(jornada) {
-  const base = jornada.nombreReparto ? jornada.nombreReparto.replace(/\s+/g, '_') : 'reparto'
+  const partes = [jornada.nombreReparto || 'reparto', jornada.vendedor].filter(Boolean)
+  const base = partes.join('_').replace(/\s+/g, '_')
   return `ventas_${base}_${jornada.fecha}.pdf`
 }
 

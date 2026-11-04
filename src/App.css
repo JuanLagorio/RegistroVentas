@@ -260,6 +260,113 @@
   color: var(--peligro);
 }
 
+.grupo-opciones {
+  border: none;
+  margin-inline: 0;
+  padding: 0;
+  min-width: 0;
+}
+
+.grupo-opciones legend {
+  font-size: 13px;
+  padding: 0;
+  margin-bottom: 6px;
+}
+
+.opciones {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.opcion {
+  position: relative;
+  margin: 0;
+  font-size: 15px;
+}
+
+.opcion input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.opcion span {
+  display: block;
+  text-align: center;
+  padding: 12px 6px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text-h);
+  font-weight: 600;
+}
+
+.opcion input:checked + span {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: white;
+}
+
+.opcion input:focus-visible + span {
+  outline: 2px solid var(--amarillo);
+  outline-offset: 2px;
+}
+
+.tarjeta h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-h);
+  margin: 0;
+  padding-top: 4px;
+}
+
+.tabla {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.tabla th,
+.tabla td {
+  padding: 8px 4px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  vertical-align: top;
+}
+
+.tabla th {
+  font-size: 12px;
+  font-weight: 600;
+  opacity: 0.8;
+}
+
+.tabla .num {
+  text-align: right;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.tabla tfoot td {
+  font-weight: 700;
+  color: var(--text-h);
+  border-bottom: none;
+}
+
+.tabla .comision {
+  color: var(--amarillo);
+}
+
+.titulo-seccion {
+  max-width: 480px;
+  margin: 24px auto 12px;
+}
+
 .total-jornada-admin {
   font-size: 28px;
   font-weight: 800;

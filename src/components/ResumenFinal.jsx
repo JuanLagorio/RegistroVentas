@@ -8,6 +8,7 @@ export default function ResumenFinal({ jornada, ventas, total, onNuevaJornada })
         <p className="subtexto">
           {jornada.fecha}
           {jornada.nombreReparto ? ` · ${jornada.nombreReparto}` : ''}
+          {jornada.vendedor ? ` · ${jornada.vendedor}` : ''}
         </p>
         <p className="total-final">${formatearMoneda(total)}</p>
         <p className="subtexto">{ventas.length} venta{ventas.length === 1 ? '' : 's'} registrada{ventas.length === 1 ? '' : 's'}</p>

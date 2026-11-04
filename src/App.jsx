@@ -67,7 +67,10 @@ export default function App() {
       <header className="encabezado">
         <div>
           <h1>{jornada.nombreReparto || 'Jornada de ventas'}</h1>
-          <span className="subtexto">{jornada.fecha}</span>
+          <span className="subtexto">
+            {jornada.fecha}
+            {jornada.vendedor ? ` · ${jornada.vendedor}` : ''}
+          </span>
         </div>
         <div className="total-barra">
           <span>Total</span>

@@ -79,11 +79,12 @@ export function useJornada() {
     }
   }, [jornadaId])
 
-  const crearJornada = useCallback(async (nombreReparto) => {
+  const crearJornada = useCallback(async ({ nombreReparto, vendedor }) => {
     await authReady
     const ref = await addDoc(collection(db, 'jornadas'), {
       fecha: hoyISO(),
       nombreReparto: nombreReparto || '',
+      vendedor: vendedor || '',
       finalizado: false,
       creadoEn: serverTimestamp(),
     })
