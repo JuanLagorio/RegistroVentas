@@ -68,12 +68,19 @@ export default function NuevaJornada({ onCrear }) {
           opciones={REPARTOS}
           valor={reparto}
           onChange={setReparto}
-          renderOpcion={(r) => (
-            <>
-              <span className="opcion-num">{r.replace(/\D/g, '') || r}</span>
-              <span className="opcion-etiqueta">Reparto</span>
-            </>
-          )}
+          renderOpcion={(r) => {
+            const numero = r.replace(/\D/g, '')
+            return (
+              <>
+                {numero ? (
+                  <span className="opcion-num">{numero}</span>
+                ) : (
+                  <span className="opcion-lugar">{r}</span>
+                )}
+                <span className="opcion-etiqueta">Reparto</span>
+              </>
+            )
+          }}
         />
 
         <GrupoOpciones

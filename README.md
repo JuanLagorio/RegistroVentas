@@ -54,8 +54,8 @@ npm run dev
 ## Cómo funciona
 
 - Al abrir la app, se crea (o retoma) una **jornada** del día en Firestore.
-  Para crearla hay que elegir el **reparto** (Reparto 1, 2 o 3) y el
-  **vendedor** (Dilan, Gonzalo o Erwin).
+  Para crearla hay que elegir el **reparto** (Reparto 1, 2, 3, Costa De Oro
+  o Punta Del Este) y el **vendedor** (Dilan, Gonzalo, Erwin o Clarisa).
 - Cada venta puede tener uno o varios productos para un mismo cliente; se
   guarda como un solo registro con el total combinado apenas se toca
   "Guardar venta". Eliminar una venta pide confirmación antes de borrar.

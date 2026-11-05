@@ -5,8 +5,8 @@ export const NOMBRE_APP = 'Registro de Ventas · Doña Sol'
 export const ADMIN_PIN = '1234'
 
 // Opciones que se eligen al iniciar cada jornada.
-export const REPARTOS = ['Reparto 1', 'Reparto 2', 'Reparto 3']
-export const VENDEDORES = ['Dilan', 'Gonzalo', 'Erwin']
+export const REPARTOS = ['Reparto 1', 'Reparto 2', 'Reparto 3', 'Costa De Oro', 'Punta Del Este']
+export const VENDEDORES = ['Dilan', 'Gonzalo', 'Erwin', 'Clarisa']
 
 // Comisión de cada vendedor, en porcentaje sobre el total vendido en el mes.
 export const COMISION_PORCENTAJE = 1.7
